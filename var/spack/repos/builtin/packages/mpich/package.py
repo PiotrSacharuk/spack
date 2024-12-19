@@ -465,11 +465,17 @@ supported, and netmod is ignored if device is ch3:sock.""",
 
     def setup_dependent_build_environment(self, env, dependent_spec):
         dependent_module = dependent_spec.package.module
-        env.set("MPICH_CC", dependent_module.spack_cc)
-        env.set("MPICH_CXX", dependent_module.spack_cxx)
-        env.set("MPICH_F77", dependent_module.spack_f77)
-        env.set("MPICH_F90", dependent_module.spack_fc)
-        env.set("MPICH_FC", dependent_module.spack_fc)
+        for var_name, attr_name in (
+            ("MPICH_CC", "spack_cc"),
+            ("MPICH_CXX", "spack_cxx"),
+            ("MPICH_FC", "spack_fc"),
+            ("MPICH_F90C", "spack_fc"),
+            ("MPICH_F77", "spack_f77"),
+        ):
+            if not hasattr(dependent_module, attr_name):
+                continue
+
+            env.set(var_name, getattr(dependent_module, attr_name))
 
     def setup_dependent_package(self, module, dependent_spec):
         spec = self.spec

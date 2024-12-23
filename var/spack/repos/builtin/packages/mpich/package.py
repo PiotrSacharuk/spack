@@ -469,7 +469,7 @@ supported, and netmod is ignored if device is ch3:sock.""",
             ("MPICH_CC", "spack_cc"),
             ("MPICH_CXX", "spack_cxx"),
             ("MPICH_FC", "spack_fc"),
-            ("MPICH_F90C", "spack_fc"),
+            ("MPICH_F90", "spack_fc"),
             ("MPICH_F77", "spack_f77"),
         ):
             if not hasattr(dependent_module, attr_name):

@@ -4,9 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.package import *
+from spack.pkg.builtin.mpich import MpichEnvironmentModifications
 
 
-class CrayMvapich2(Package):
+class CrayMvapich2(MpichEnvironmentModifications, Package):
     """Cray/HPE packaging of MVAPICH2 for HPE Apollo systems"""
 
     homepage = "https://docs.nersc.gov/development/compilers/wrappers/"
@@ -29,21 +30,15 @@ class CrayMvapich2(Package):
     requires("platform=linux", msg="Cray MVAPICH2 is only available on Cray")
 
     def setup_run_environment(self, env):
-        if spack_cc is None:
-            return
+        if self.spec.dependencies(virtuals=("c",)):
+            env.set("MPICC", self.spec["c"].package.cc)
 
-        env.set("MPICC", spack_cc)
-        env.set("MPICXX", spack_cxx)
-        env.set("MPIF77", spack_fc)
-        env.set("MPIF90", spack_fc)
+        if self.spec.dependencies(virtuals=("cxx",)):
+            env.set("MPICXX", self.spec["cxx"].package.cxx)
 
-    def setup_dependent_build_environment(self, env, dependent_spec):
-        dependent_module = dependent_spec.package.module
-        env.set("MPICH_CC", dependent_module.spack_cc)
-        env.set("MPICH_CXX", dependent_module.spack_cxx)
-        env.set("MPICH_F77", dependent_module.spack_f77)
-        env.set("MPICH_F90", dependent_module.spack_fc)
-        env.set("MPICH_FC", dependent_module.spack_fc)
+        if self.spec.dependencies(virtuals=("c",)):
+            env.set("MPIFC", self.spec["fortran"].package.fc)
+            env.set("MPIF77", self.spec["fortran"].package.fc)
 
     def setup_dependent_package(self, module, dependent_spec):
         spec = self.spec

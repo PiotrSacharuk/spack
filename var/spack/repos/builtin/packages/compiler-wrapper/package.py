@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 import pathlib
 import shutil
+import sys
 from typing import List
 
 import archspec.cpu
@@ -40,13 +41,15 @@ class CompilerWrapper(Package):
 
     license("Apache-2.0 OR MIT")
 
-    version(
-        "1.0",
-        sha256="92924570efbc0f388bbbeb87188e05537008bc25069529f7b519b4e48d7ddfb6",
-        expand=False,
-    )
-
-    conflicts("platform=windows")
+    if sys.platform != "win32":
+        version(
+            "1.0",
+            sha256="92924570efbc0f388bbbeb87188e05537008bc25069529f7b519b4e48d7ddfb6",
+            expand=False,
+        )
+    else:
+        version("1.0")
+        has_code = False
 
     def bin_dir(self) -> pathlib.Path:
         # This adds an extra "spack" subdir, so that the script and symlinks don't get
@@ -54,6 +57,14 @@ class CompilerWrapper(Package):
         return pathlib.Path(str(self.prefix)) / "spack" / "bin"
 
     def install(self, spec, prefix):
+        if sys.platform == "win32":
+            placeholder = self.bin_dir() / "placeholder-wrapper"
+            placeholder.parent.mkdir(parents=True)
+            placeholder.write_text(
+                "This file is a placeholder for the compiler wrapper on Windows."
+            )
+            return
+
         cc_script = pathlib.Path(self.stage.source_path) / "cc.sh"
         bin_dir = self.bin_dir()
 
@@ -126,6 +137,9 @@ class CompilerWrapper(Package):
             (bin_dir / subdir / name).symlink_to(installed_script)
 
     def setup_dependent_build_environment(self, env, dependent_spec):
+        if sys.platform == "win32":
+            return
+
         _var_list = []
         if dependent_spec.dependencies(virtuals=("c",)):
             _var_list.append(("c", "cc", "CC", "SPACK_CC"))

@@ -301,7 +301,7 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
     for dev, (dflt, desc) in devices_variants.items():
         variant(dev, default=dflt, description=desc)
     conflicts("+cuda", when="+rocm", msg="CUDA and ROCm are not compatible in Kokkos.")
-    depends_on("intel-oneapi-dpl", when="+sycl")
+    depends_on("intel-oneapi-dpl@latest", when="+sycl")
     depends_on("rocthrust", when="@4.3: +rocm")
 
     for opt, (dflt, desc) in options_variants.items():

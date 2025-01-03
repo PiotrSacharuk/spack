@@ -488,7 +488,7 @@ class Gromacs(CMakePackage, CudaPackage):
         description="Enable Instrumentation and Tracing Technology (ITT)"
         + " profiling API (from Intel)",
     )
-    depends_on("intel-oneapi-vtune", "+itt")
+    depends_on("intel-oneapi-vtune@latest", "+itt")
 
     depends_on("fftw-api@3")
     depends_on("cmake@2.8.8:3", type="build")

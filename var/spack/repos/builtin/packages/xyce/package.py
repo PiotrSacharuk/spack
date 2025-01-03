@@ -147,7 +147,7 @@ class Xyce(CMakePackage):
         depends_on("blis libs=static", when="^[virtuals=blas] blis+blas")
         depends_on("clblast~shared", when="^[virtuals=blas] clblast+netlib")
         depends_on("intel-mkl~shared", when="^[virtuals=blas] intel-mkl")
-        depends_on("intel-oneapi-mkl~shared", when="^[virtuals=blas] intel-oneapi-mkl")
+        depends_on("intel-oneapi-mkl@latest", when="^[virtuals=blas] intel-oneapi-mkl")
         depends_on(
             "intel-parallel-studio~shared", when="^[virtuals=blas] intel-parallel-studio+mkl"
         )

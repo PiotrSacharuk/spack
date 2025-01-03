@@ -65,8 +65,8 @@ class Blaspp(CMakePackage, CudaPackage, ROCmPackage):
     depends_on("blas")
     depends_on("llvm-openmp", when="%apple-clang +openmp")
     depends_on("rocblas", when="+rocm")
-    depends_on("intel-oneapi-mkl", when="+sycl")
-    depends_on("intel-oneapi-mkl threads=openmp", when="+sycl")
+    depends_on("intel-oneapi-mkl@latest", when="+sycl")
+    depends_on("intel-oneapi-mkl@latest threads=openmp", when="+sycl")
 
     # only supported with clingo solver: virtual dependency preferences
     # depends_on('openblas threads=openmp', when='+openmp ^openblas')

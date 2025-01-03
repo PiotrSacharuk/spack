@@ -94,7 +94,7 @@ class Extrae(AutotoolsPackage):
     with when("+dyninst"):
         depends_on("dyninst@10.1.0:")
         depends_on("elfutils", when="@4.1.2:")
-        depends_on("intel-oneapi-tbb", when="@4.1.2:")
+        depends_on("intel-oneapi-tbb@latest", when="@4.1.2:")
 
     variant("papi", default=True, description="Use PAPI to collect performance counters")
     depends_on("papi", when="+papi")

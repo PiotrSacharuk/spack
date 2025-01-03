@@ -25,7 +25,7 @@ class IntelOneapiCcl(IntelOneApiLibraryPackage):
         "https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/oneccl.html"
     )
 
-    depends_on("intel-oneapi-mpi")
+    depends_on("intel-oneapi-mpi@latest")
 
     version(
         "2021.14.0",

@@ -93,7 +93,7 @@ class Lapackpp(CMakePackage, CudaPackage, ROCmPackage):
     depends_on("lapack")
     depends_on("rocblas", when="+rocm")
     depends_on("rocsolver", when="+rocm")
-    depends_on("intel-oneapi-mkl threads=openmp", when="+sycl")
+    depends_on("intel-oneapi-mkl@latest threads=openmp", when="+sycl")
 
     backend_msg = "LAPACK++ supports only one GPU backend at a time"
     conflicts("+rocm", when="+cuda", msg=backend_msg)

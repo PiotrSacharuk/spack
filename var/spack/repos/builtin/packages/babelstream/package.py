@@ -199,7 +199,7 @@ class Babelstream(CMakePackage, CudaPackage, ROCmPackage, MakefilePackage):
     depends_on("hip", when="+hip")
     depends_on("rocthrust", when="thrust_submodel=rocm")
     depends_on("intel-tbb", when="+std +std_use_tbb")
-    depends_on("intel-oneapi-dpl", when="+std +std_use_onedpl")
+    depends_on("intel-oneapi-dpl@latest", when="+std +std_use_onedpl")
     depends_on("intel-tbb", when="+std +std_use_onedpl")
     # TBB Dependency
     depends_on("intel-tbb", when="+tbb")

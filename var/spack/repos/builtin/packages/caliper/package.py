@@ -121,7 +121,7 @@ class Caliper(CachedCMakePackage, CudaPackage, ROCmPackage):
     depends_on("unwind@1.2:1", when="+libunwind")
     depends_on("elfutils", when="+libdw")
     depends_on("variorum", when="+variorum")
-    depends_on("intel-oneapi-vtune", when="+vtune")
+    depends_on("intel-oneapi-vtune@latest", when="+vtune")
 
     depends_on("sosflow@spack", when="@1.0:1+sosflow")
 

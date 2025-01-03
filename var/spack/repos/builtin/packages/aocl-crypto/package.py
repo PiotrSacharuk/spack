@@ -58,7 +58,7 @@ class AoclCrypto(CMakePackage):
 
     depends_on("cmake@3.22:", type="build")
     depends_on("openssl@3.1.5:")
-    depends_on("intel-oneapi-ippcp@2021.12.0:", when="+ipp")
+    depends_on("intel-oneapi-ippcp@latest", when="+ipp")
     depends_on("p7zip", type="build")
     for vers in ["4.2", "5.0"]:
         with when(f"@={vers}"):

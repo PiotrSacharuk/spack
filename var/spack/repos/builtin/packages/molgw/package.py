@@ -48,7 +48,7 @@ class Molgw(MakefilePackage):
         "intel-oneapi-mkl+cluster", when="+scalapack ^[virtuals=scalapack] intel-oneapi-mkl"
     )
     # enforce threaded mkl when asking +openmp (and using intel-oneapi-mkl)
-    depends_on("intel-oneapi-mkl threads=openmp", when="+openmp ^[virtuals=blas] intel-oneapi-mkl")
+    depends_on("intel-oneapi-mkl@latest threads=openmp", when="+openmp ^[virtuals=blas] intel-oneapi-mkl")
     # enforce threaded openblas when asking +openmp (and using openblas)
     depends_on("openblas threads=openmp", when="+openmp ^[virtuals=blas] openblas")
 

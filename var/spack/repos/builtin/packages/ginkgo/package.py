@@ -86,9 +86,9 @@ class Ginkgo(CMakePackage, CudaPackage, ROCmPackage):
     depends_on("googletest", type="test")
     depends_on("numactl", type="test", when="+hwloc")
 
-    depends_on("intel-oneapi-mkl", when="+sycl")
-    depends_on("intel-oneapi-dpl", when="+sycl")
-    depends_on("intel-oneapi-tbb", when="+sycl")
+    depends_on("intel-oneapi-mkl@latest", when="+sycl")
+    depends_on("intel-oneapi-dpl@latest", when="+sycl")
+    depends_on("intel-oneapi-tbb@latest", when="+sycl")
 
     conflicts("%gcc@:5.2.9")
     conflicts("+rocm", when="@:1.1.1")

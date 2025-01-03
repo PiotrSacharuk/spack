@@ -89,7 +89,7 @@ class DlaFuture(CMakePackage, CudaPackage, ROCmPackage):
     conflicts("^blaspp@2025.05:", when="@:0.6.0")
 
     depends_on("lapackpp@2022.05.00:")
-    depends_on("intel-oneapi-mkl +cluster", when="^[virtuals=scalapack] intel-oneapi-mkl")
+    depends_on("intel-oneapi-mkl@latest +cluster", when="^[virtuals=scalapack] intel-oneapi-mkl")
 
     conflicts("intel-oneapi-mkl", when="@:0.3")
 

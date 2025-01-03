@@ -80,7 +80,7 @@ class Berkeleygw(MakefilePackage):
         depends_on("fftw+openmp", when="^[virtuals=fftw-api] fftw")
         depends_on("fujitsu-fftw+openmp", when="^[virtuals=fftw-api] fujitsu-fftw")
         depends_on("intel-mkl threads=openmp", when="^[virtuals=fftw-api] intel-mkl")
-        depends_on("intel-oneapi-mkl threads=openmp", when="^[virtuals=fftw-api] intel-oneapi-mkl")
+        depends_on("intel-oneapi-mkl@latest threads=openmp", when="^[virtuals=fftw-api] intel-oneapi-mkl")
         depends_on(
             "intel-parallel-studio threads=openmp",
             when="^[virtuals=fftw-api] intel-parallel-studio",
@@ -94,7 +94,7 @@ class Berkeleygw(MakefilePackage):
         depends_on("fftw~openmp", when="^[virtuals=fftw-api] fftw")
         depends_on("fujitsu-fftw~openmp", when="^[virtuals=fftw-api] fujitsu-fftw")
         depends_on("intel-mkl threads=none", when="^[virtuals=fftw-api] intel-mkl")
-        depends_on("intel-oneapi-mkl threads=none", when="^[virtuals=fftw-api] intel-oneapi-mkl")
+        depends_on("intel-oneapi-mkl@latest threads=none", when="^[virtuals=fftw-api] intel-oneapi-mkl")
         depends_on(
             "intel-parallel-studio threads=none", when="^[virtuals=fftw-api] intel-parallel-studio"
         )

@@ -146,7 +146,7 @@ class PyHorovod(PythonPackage, CudaPackage):
     depends_on("mpi", when="tensor_ops=mpi")
     depends_on("cmake", type="build", when="tensor_ops=gloo")
     depends_on("libuv@1.26:", when="tensor_ops=gloo platform=darwin")
-    depends_on("intel-oneapi-ccl", when="tensor_ops=ccl")
+    depends_on("intel-oneapi-ccl@latest", when="tensor_ops=ccl")
 
     conflicts(
         "cuda_arch=none",

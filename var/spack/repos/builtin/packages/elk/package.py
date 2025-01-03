@@ -75,7 +75,7 @@ class Elk(MakefilePackage):
     depends_on("mkl", when="linalg=mkl")
     with when("linalg=mkl +openmp"):
         depends_on("intel-mkl threads=openmp", when="^[virtuals=mkl] intel-mkl")
-        depends_on("intel-oneapi-mkl threads=openmp", when="^[virtuals=mkl] intel-oneapi-mkl")
+        depends_on("intel-oneapi-mkl@latest threads=openmp", when="^[virtuals=mkl] intel-oneapi-mkl")
         depends_on(
             "intel-parallel-studio threads=openmp", when="^[virtuals=mkl] intel-parallel-studio"
         )

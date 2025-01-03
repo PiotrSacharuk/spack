@@ -27,7 +27,7 @@ class Gcta(CMakePackage):
     conflicts("target=aarch64:", when="@:1.91.2", msg="aarch64 support added in 1.94.0")
 
     depends_on("cmake@3.1:", type="build")
-    depends_on("intel-oneapi-mkl", when="target=x86_64:")
+    depends_on("intel-oneapi-mkl@latest", when="target=x86_64:")
     depends_on("openblas", when="target=aarch64:")
     depends_on("eigen@3.3.1", when="@1.91.2")
     depends_on("eigen@3.3.7:", when="@1.94.0beta:")

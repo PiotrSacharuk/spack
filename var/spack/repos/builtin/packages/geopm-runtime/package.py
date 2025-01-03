@@ -100,7 +100,7 @@ class GeopmRuntime(AutotoolsPackage):
     depends_on("stress-ng", type="run", when="+checkprogs")
 
     # Intel dependencies
-    depends_on("intel-oneapi-mkl%oneapi", when="+intel-mkl")
+    depends_on("intel-oneapi-mkl@latest", when="+intel-mkl")
 
     extends("python")
 
